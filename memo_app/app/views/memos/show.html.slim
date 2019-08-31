@@ -1,0 +1,31 @@
+h1= @memo.title
+
+.nav.justify-content-end
+    = link_to '一覧', memos_path, class: 'btn btn-success'
+/ human_attribute_name(: ~~~ ) はconfig/locales/ja.ymlより 
+/ ~~~に当てはまる物を探して対応する文字を入れてくれる
+table.table.table-hober
+    tbody
+        tr
+            th= Memo.human_attribute_name(:id)
+            td= @memo.id
+        tr 
+            th= Memo.human_attribute_name(:title)
+            td= @memo.title
+        tr
+            th= Memo.human_attribute_name(:content)
+            / td= simple_format(h(@memo.content), {}, sanitize: false, wrapper_tag: "div")
+            / 改行を<br>へ変換してくれる
+
+            td= simple_format(h(@memo.content), {}, sanitize: false, wrapper_tag: "div")
+        tr
+            th= Memo.human_attribute_name(:created_at)
+            td= @memo.created_at
+        tr
+            th= Memo.human_attribute_name(:updated_at)
+            td= @memo.updated_at
+        tr
+            th
+            td
+= link_to '編集', edit_memo_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @memo, method: :delete, data: {confirm:"メモ「#{@memo.title}」を削除してもよろしいですか？"},class:'btn btn-danger'

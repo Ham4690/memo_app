@@ -1,0 +1,15 @@
+h1= "メモ「#{@memo.title}」:編集"
+
+.nav.justify-content-end
+    = link_to '一覧' ,memos_path, class:'btn btn-success'
+
+= render partial: 'form', locals: {memo: @memo}
+
+/ = form_with model: @memo, local: true do |f|
+/     .form-group
+/         = f.label :title
+/         = f.text_field :title, class: 'form-control', id: 'memo_title'
+/     .form-group
+/         = f.label :content
+/         = f.text_area :content, rows: 5, class: 'form-control', id:'memo_content'
+/     = f.submit "更新", class: 'btn btn-primary'
